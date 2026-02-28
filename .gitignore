@@ -1,0 +1,4 @@
+.vscode/
+.Xil/
+design1/src/softmax_design1/
+design1/src/vitis_hls.log
