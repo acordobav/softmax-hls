@@ -12,13 +12,14 @@ int main() {
         in[i] = i * 0.01f;
     }
 
-    // Call the DUT
+    // Call the DUT 
     softmax_top(in, out);
 
-    // Verify output sum = 1
+    // Verify output sum = 1 
     float sum = 0.0f;
 
-    for (int i = 0; i < N; i++) {
+    // Print output values and compute sum
+    for (int i = 0; i < N; i++) { 
         sum += out[i];
         std::cout << "out[" << i << "] = " << out[i] << std::endl;
     }

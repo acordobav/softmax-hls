@@ -1,0 +1,171 @@
+
+
+================================================================
+== Synthesis Summary Report of 'softmax_top'
+================================================================
++ General Information: 
+    * Date:           Sun Mar  1 09:16:12 2026
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        softmax_design1
+    * Solution:       solution (Vitis Kernel Flow Target)
+    * Product family: zynquplus
+    * Target device:  xck26-sfvc784-2LV-c
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+-----------+-----+
+    |                 Modules                 | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |         |            |           |     |
+    |                 & Loops                 | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF     |    LUT    | URAM|
+    +-----------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+-----------+-----+
+    |+ softmax_top                            |     -|  0.00|     1199|  4.796e+03|         -|     1200|     -|        no|  17 (5%)|  9 (~0%)|   3084 (1%)|  3928 (3%)|    -|
+    | + softmax_top_Pipeline_VITIS_LOOP_21_1  |     -|  0.00|      923|  3.692e+03|         -|      923|     -|        no|        -|  9 (~0%)|  1417 (~0%)|  1563 (1%)|    -|
+    |  o VITIS_LOOP_21_1                      |    II|  2.92|      921|  3.684e+03|        31|        9|   100|       yes|        -|        -|           -|          -|    -|
+    | + softmax_top_Pipeline_VITIS_LOOP_27_2  |     -|  0.00|      132|    528.000|         -|      132|     -|        no|        -|        -|   295 (~0%)|  220 (~0%)|    -|
+    |  o VITIS_LOOP_27_2                      |     -|  2.92|      130|    520.000|        32|        1|   100|       yes|        -|        -|           -|          -|    -|
+    +-----------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| Interface  | Read/Write | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   | Resource Estimate |
+|            |            | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |                   |
++------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| m_axi_gmem | READ_WRITE | 32 -> 128  | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          | BRAM=16           |
++------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                                         |
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 4=AP_CONTINUE 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                                           |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                                      |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                                      |
+| s_axi_control | in_r_1   | 0x10   | 32    | W      | Data signal of in_r              |                                                                                    |
+| s_axi_control | in_r_2   | 0x14   | 32    | W      | Data signal of in_r              |                                                                                    |
+| s_axi_control | out_r_1  | 0x1c   | 32    | W      | Data signal of out_r             |                                                                                    |
+| s_axi_control | out_r_2  | 0x20   | 32    | W      | Data signal of out_r             |                                                                                    |
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+---------------+-----------+
+| Interface | Type          | Ports     |
++-----------+---------------+-----------+
+| ap_clk    | clock         | ap_clk    |
+| ap_rst_n  | reset         | ap_rst_n  |
+| interrupt | interrupt     | interrupt |
+| ap_ctrl   | ap_ctrl_chain |           |
++-----------+---------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------+
+| Argument | Direction | Datatype      |
++----------+-----------+---------------+
+| in       | inout     | float const * |
+| out      | inout     | float*        |
++----------+-----------+---------------+
+
+* SW-to-HW Mapping
++----------+---------------+-----------+----------+-----------------------------------+
+| Argument | HW Interface  | HW Type   | HW Usage | HW Info                           |
++----------+---------------+-----------+----------+-----------------------------------+
+| in       | m_axi_gmem    | interface |          | channel=0                         |
+| in       | s_axi_control | register  | offset   | name=in_r_1 offset=0x10 range=32  |
+| in       | s_axi_control | register  | offset   | name=in_r_2 offset=0x14 range=32  |
+| out      | m_axi_gmem    | interface |          | channel=0                         |
+| out      | s_axi_control | register  | offset   | name=out_r_1 offset=0x1c range=32 |
+| out      | s_axi_control | register  | offset   | name=out_r_2 offset=0x20 range=32 |
++----------+---------------+-----------+----------+-----------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* Inferred Burst Summary
++--------------+-----------+--------+-------+
+| HW Interface | Direction | Length | Width |
++--------------+-----------+--------+-------+
+| m_axi_gmem   | read      | 25     | 128   |
+| m_axi_gmem   | write     | 25     | 128   |
++--------------+-----------+--------+-------+
+
+* All M_AXI Variable Accesses
++--------------+----------+-------------------+-----------+--------------+--------+-----------------+-------------------+
+| HW Interface | Variable | Access Location   | Direction | Burst Status | Length | Loop            | Loop Location     |
++--------------+----------+-------------------+-----------+--------------+--------+-----------------+-------------------+
+| m_axi_gmem   | in       | softmax.cpp:22:35 | read      | Widened      | 25     | VITIS_LOOP_21_1 | softmax.cpp:21:22 |
+| m_axi_gmem   | in       | softmax.cpp:22:35 | read      | Inferred     | 100    | VITIS_LOOP_21_1 | softmax.cpp:21:22 |
+| m_axi_gmem   | out      | softmax.cpp:28:16 | write     | Widened      | 25     | VITIS_LOOP_27_2 | softmax.cpp:27:22 |
+| m_axi_gmem   | out      | softmax.cpp:28:16 | write     | Inferred     | 100    | VITIS_LOOP_27_2 | softmax.cpp:27:22 |
++--------------+----------+-------------------+-----------+--------------+--------+-----------------+-------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------------------+-----+--------+-------------+--------+----------+---------+
+| Name                                    | DSP | Pragma | Variable    | Op     | Impl     | Latency |
++-----------------------------------------+-----+--------+-------------+--------+----------+---------+
+| + softmax_top                           | 9   |        |             |        |          |         |
+|  + softmax_top_Pipeline_VITIS_LOOP_21_1 | 9   |        |             |        |          |         |
+|    icmp_ln21_fu_151_p2                  |     |        | icmp_ln21   | seteq  | auto     | 0       |
+|    add_ln21_fu_157_p2                   |     |        | add_ln21    | add    | fabric   | 0       |
+|    icmp_ln22_fu_167_p2                  |     |        | icmp_ln22   | seteq  | auto     | 0       |
+|    fexp_32ns_32ns_32_18_full_dsp_1_U2   | 7   |        | tmp         | fexp   | fulldsp  | 17      |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U1   | 2   |        | sum_1       | fadd   | fulldsp  | 9       |
+|  + softmax_top_Pipeline_VITIS_LOOP_27_2 | 0   |        |             |        |          |         |
+|    icmp_ln27_fu_132_p2                  |     |        | icmp_ln27   | seteq  | auto     | 0       |
+|    add_ln27_fu_138_p2                   |     |        | add_ln27    | add    | fabric   | 0       |
+|    fdiv_32ns_32ns_32_29_no_dsp_1_U9     |     |        | div         | fdiv   | fabric   | 28      |
+|    icmp_ln28_fu_153_p2                  |     |        | icmp_ln28   | seteq  | auto     | 0       |
+|    select_ln28_fu_206_p3                |     |        | select_ln28 | select | auto_sel | 0       |
++-----------------------------------------+-----+--------+-------------+--------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+--------------+-----------+------+------+--------+------------+------+---------+------------------+
+| Name              | Usage        | Type      | BRAM | URAM | Pragma | Variable   | Impl | Latency | Bitwidth, Depth, |
+|                   |              |           |      |      |        |            |      |         | Banks            |
++-------------------+--------------+-----------+------+------+--------+------------+------+---------+------------------+
+| + softmax_top     |              |           | 17   | 0    |        |            |      |         |                  |
+|   control_s_axi_U | interface    | s_axilite |      |      |        |            |      |         |                  |
+|   gmem_m_axi_U    | interface    | m_axi     | 16   |      |        |            |      |         |                  |
+|   exp_buffer_U    | ram_1p array |           | 2    |      |        | exp_buffer | auto | 1       | 32, 100, 1       |
++-------------------+--------------+-----------+------+------+--------+------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+-----------------------------------------+---------------------------------------+
+| Type      | Options                                 | Location                              |
++-----------+-----------------------------------------+---------------------------------------+
+| interface | m_axi port=in offset=slave bundle=gmem  | softmax.cpp:9 in softmax_top, in      |
+| interface | m_axi port=out offset=slave bundle=gmem | softmax.cpp:10 in softmax_top, out    |
+| interface | s_axilite port=in                       | softmax.cpp:12 in softmax_top, in     |
+| interface | s_axilite port=out                      | softmax.cpp:13 in softmax_top, out    |
+| interface | s_axilite port=return                   | softmax.cpp:14 in softmax_top, return |
++-----------+-----------------------------------------+---------------------------------------+
+
+

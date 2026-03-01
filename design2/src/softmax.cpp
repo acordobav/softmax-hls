@@ -4,7 +4,7 @@
 extern "C" {
 
 void softmax_top(const float* in, float* out) {
-
+//Interface pragmas for HLS
 #pragma HLS INTERFACE m_axi port=in  offset=slave bundle=gmem
 #pragma HLS INTERFACE m_axi port=out offset=slave bundle=gmem
 

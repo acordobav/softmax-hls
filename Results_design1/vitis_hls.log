@@ -1,0 +1,306 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.1 (64-bit)
+  **** SW Build 5069499 on May 21 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Sun Mar  1 09:15:25 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /tools/Xilinx-2024.1/Vitis_HLS/2024.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] For user 'gcarranza' on host '73bff328fa37' (Linux_x86_64 version 5.4.0-196-generic) on Sun Mar 01 09:15:30 CET 2026
+INFO: [HLS 200-10] On os Ubuntu 20.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src'
+WARNING: [HLS 200-2053] The vitis_hls executable is deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script 'script.tcl'
+INFO: [HLS 200-1510] Running: open_project softmax_design1 
+INFO: [HLS 200-10] Creating and opening project '/home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1'.
+INFO: [HLS 200-1510] Running: set_top softmax_top 
+INFO: [HLS 200-1510] Running: add_files softmax.cpp 
+INFO: [HLS 200-10] Adding design file 'softmax.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files softmax.h 
+INFO: [HLS 200-10] Adding design file 'softmax.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb softmax_tb.cc 
+INFO: [HLS 200-10] Adding test bench file 'softmax_tb.cc' to the project
+INFO: [HLS 200-1510] Running: open_solution -flow_target vitis solution 
+INFO: [HLS 200-10] Creating and opening solution '/home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution'.
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xck26-sfvc784-2LV-c 
+INFO: [HLS 200-1611] Setting target device to 'xck26-sfvc784-2LV-c'
+INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
+INFO: [HLS 200-1510] Running: config_rtl -deadlock_detection sim 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_conservative_mode=1 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_export -format xo -ipname softmax_top 
+INFO: [HLS 200-1510] Running: csim_design -clean 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch CLANG as the compiler.
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../softmax_tb.cc in debug mode
+   Compiling ../../../../softmax.cpp in debug mode
+   Generating csim.exe
+out[0] = 0.00584896
+out[1] = 0.00590775
+out[2] = 0.00596712
+out[3] = 0.00602709
+out[4] = 0.00608766
+out[5] = 0.00614885
+out[6] = 0.00621064
+out[7] = 0.00627306
+out[8] = 0.00633611
+out[9] = 0.00639978
+out[10] = 0.0064641
+out[11] = 0.00652907
+out[12] = 0.00659469
+out[13] = 0.00666096
+out[14] = 0.00672791
+out[15] = 0.00679553
+out[16] = 0.00686382
+out[17] = 0.0069328
+out[18] = 0.00700248
+out[19] = 0.00707286
+out[20] = 0.00714394
+out[21] = 0.00721574
+out[22] = 0.00728826
+out[23] = 0.0073615
+out[24] = 0.00743549
+out[25] = 0.00751022
+out[26] = 0.0075857
+out[27] = 0.00766193
+out[28] = 0.00773894
+out[29] = 0.00781671
+out[30] = 0.00789527
+out[31] = 0.00797462
+out[32] = 0.00805477
+out[33] = 0.00813572
+out[34] = 0.00821749
+out[35] = 0.00830007
+out[36] = 0.00838349
+out[37] = 0.00846775
+out[38] = 0.00855285
+out[39] = 0.0086388
+out[40] = 0.00872563
+out[41] = 0.00881332
+out[42] = 0.0089019
+out[43] = 0.00899136
+out[44] = 0.00908173
+out[45] = 0.009173
+out[46] = 0.00926519
+out[47] = 0.00935831
+out[48] = 0.00945236
+out[49] = 0.00954736
+out[50] = 0.00964331
+out[51] = 0.00974023
+out[52] = 0.00983812
+out[53] = 0.00993699
+out[54] = 0.0100369
+out[55] = 0.0101377
+out[56] = 0.0102396
+out[57] = 0.0103425
+out[58] = 0.0104465
+out[59] = 0.0105515
+out[60] = 0.0106575
+out[61] = 0.0107646
+out[62] = 0.0108728
+out[63] = 0.0109821
+out[64] = 0.0110924
+out[65] = 0.0112039
+out[66] = 0.0113165
+out[67] = 0.0114303
+out[68] = 0.0115451
+out[69] = 0.0116612
+out[70] = 0.0117784
+out[71] = 0.0118967
+out[72] = 0.0120163
+out[73] = 0.0121371
+out[74] = 0.012259
+out[75] = 0.0123823
+out[76] = 0.0125067
+out[77] = 0.0126324
+out[78] = 0.0127593
+out[79] = 0.0128876
+out[80] = 0.0130171
+out[81] = 0.0131479
+out[82] = 0.0132801
+out[83] = 0.0134135
+out[84] = 0.0135483
+out[85] = 0.0136845
+out[86] = 0.013822
+out[87] = 0.013961
+out[88] = 0.0141013
+out[89] = 0.014243
+out[90] = 0.0143861
+out[91] = 0.0145307
+out[92] = 0.0146767
+out[93] = 0.0148242
+out[94] = 0.0149732
+out[95] = 0.0151237
+out[96] = 0.0152757
+out[97] = 0.0154292
+out[98] = 0.0155843
+out[99] = 0.0157409
+Sum = 1
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-2161] Finished Command csim_design Elapsed time: 00:00:06; Allocated memory: 0.094 MB.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 322.953 MB.
+INFO: [HLS 200-10] Analyzing design file 'softmax.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 18 seconds. CPU system time: 1.15 seconds. Elapsed time: 21.93 seconds; current allocated memory: 328.727 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 200-1995] There were 52 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 38 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 31 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 53 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 57 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 56 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 56 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 56 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 60 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 66 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/gcarranza/Documents/fpga_2026/softmax-hls/design1/src/softmax_design1/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-131] Inlining function 'exp_reduce_::exp(float)' into 'hls::expf(float)' (/wrk/ci/prod/2024.1/hls_product/continuous/545/2024.1/src/shared/hls/clib/hlsmath/src/c++/expfloat.cpp:22:9)
+INFO: [HLS 214-131] Inlining function 'hls::expf(float)' into 'softmax_top' (softmax.cpp:22:25)
+WARNING: [HLS 214-386] A depth specification is required for MAXI interface port 'in' for cosimulation. (softmax.cpp:6:0)
+WARNING: [HLS 214-386] A depth specification is required for MAXI interface port 'out' for cosimulation. (softmax.cpp:6:0)
+INFO: [HLS 214-376] automatically set the pipeline for Loop< VITIS_LOOP_21_1> at softmax.cpp:21:22 
+INFO: [HLS 214-376] automatically set the pipeline for Loop< VITIS_LOOP_27_2> at softmax.cpp:27:22 
+INFO: [HLS 214-115] Multiple burst reads of length 25 and bit width 128 has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (softmax.cpp:21:22)
+INFO: [HLS 214-115] Multiple burst writes of length 25 and bit width 128 has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (softmax.cpp:27:22)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.31 seconds. CPU system time: 0.47 seconds. Elapsed time: 8.42 seconds; current allocated memory: 337.688 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 337.688 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.44 seconds; current allocated memory: 337.973 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 338.660 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 361.238 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 371.809 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'softmax_top' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'softmax_top_Pipeline_VITIS_LOOP_21_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_21_1'.
+WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LOOP_21_1' (loop 'VITIS_LOOP_21_1'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0) between 'store' operation 0 bit ('sum_write_ln17', softmax.cpp:17) of variable 'sum', softmax.cpp:23 on local variable 'sum', softmax.cpp:17 and 'load' operation 32 bit ('sum_load', softmax.cpp:23) on local variable 'sum', softmax.cpp:17.
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LOOP_21_1' (loop 'VITIS_LOOP_21_1'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0) between 'store' operation 0 bit ('sum_write_ln17', softmax.cpp:17) of variable 'sum', softmax.cpp:23 on local variable 'sum', softmax.cpp:17 and 'load' operation 32 bit ('sum_load', softmax.cpp:23) on local variable 'sum', softmax.cpp:17.
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LOOP_21_1' (loop 'VITIS_LOOP_21_1'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0) between 'store' operation 0 bit ('sum_write_ln17', softmax.cpp:17) of variable 'sum', softmax.cpp:23 on local variable 'sum', softmax.cpp:17 and 'load' operation 32 bit ('sum_load', softmax.cpp:23) on local variable 'sum', softmax.cpp:17.
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LOOP_21_1' (loop 'VITIS_LOOP_21_1'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'store' operation 0 bit ('sum_write_ln17', softmax.cpp:17) of variable 'sum', softmax.cpp:23 on local variable 'sum', softmax.cpp:17 and 'load' operation 32 bit ('sum_load', softmax.cpp:23) on local variable 'sum', softmax.cpp:17.
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LOOP_21_1' (loop 'VITIS_LOOP_21_1'): Unable to enforce a carried dependence constraint (II = 7, distance = 1, offset = 0) between 'store' operation 0 bit ('sum_write_ln17', softmax.cpp:17) of variable 'sum', softmax.cpp:23 on local variable 'sum', softmax.cpp:17 and 'load' operation 32 bit ('sum_load', softmax.cpp:23) on local variable 'sum', softmax.cpp:17.
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LOOP_21_1' (loop 'VITIS_LOOP_21_1'): Unable to enforce a carried dependence constraint (II = 8, distance = 1, offset = 0) between 'store' operation 0 bit ('sum_write_ln17', softmax.cpp:17) of variable 'sum', softmax.cpp:23 on local variable 'sum', softmax.cpp:17 and 'load' operation 32 bit ('sum_load', softmax.cpp:23) on local variable 'sum', softmax.cpp:17.
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 9, Depth = 31, loop 'VITIS_LOOP_21_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.29 seconds; current allocated memory: 372.867 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 372.867 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'softmax_top_Pipeline_VITIS_LOOP_27_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_27_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 32, loop 'VITIS_LOOP_27_2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 372.867 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 372.867 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'softmax_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 372.867 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 372.867 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'softmax_top_Pipeline_VITIS_LOOP_21_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'softmax_top_Pipeline_VITIS_LOOP_21_1' pipeline 'VITIS_LOOP_21_1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_21_1/m_axi_gmem_ARUSER' to 0.
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_10_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fexp_32ns_32ns_32_18_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_top_Pipeline_VITIS_LOOP_21_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.1 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.21 seconds; current allocated memory: 372.867 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'softmax_top_Pipeline_VITIS_LOOP_27_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'softmax_top_Pipeline_VITIS_LOOP_27_2' pipeline 'VITIS_LOOP_27_2' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_AWUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_27_2/m_axi_gmem_BREADY' to 0.
+INFO: [RTGEN 206-100] Generating core module 'fdiv_32ns_32ns_32_29_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_top_Pipeline_VITIS_LOOP_27_2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.11 seconds. CPU system time: 0 seconds. Elapsed time: 0.11 seconds; current allocated memory: 373.938 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'softmax_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'softmax_top/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'softmax_top/in_r' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'softmax_top/out_r' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'softmax_top' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'in_r', 'out_r' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_top'.
+INFO: [RTMG 210-278] Implementing memory 'softmax_top_exp_buffer_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.24 seconds; current allocated memory: 377.781 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.3 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.36 seconds; current allocated memory: 380.949 MB.
+INFO: [HLS 200-1603] Design has inferred MAXI bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.75 seconds. CPU system time: 0.05 seconds. Elapsed time: 0.81 seconds; current allocated memory: 387.641 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for softmax_top.
+INFO: [VLOG 209-307] Generating Verilog RTL for softmax_top.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 342.47 MHz
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:33; Allocated memory: 65.312 MB.
+INFO: [HLS 200-1510] Running: close_project 
+HLS completed successfully
+INFO: [HLS 200-112] Total CPU user time: 31.77 seconds. Total CPU system time: 2.64 seconds. Total elapsed time: 48.78 seconds; peak allocated memory: 387.773 MB.
