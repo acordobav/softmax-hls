@@ -1,4 +1,4 @@
-open_project softmax_design1
+open_project softmax_design3
 set_top softmax_top
 
 add_files softmax.cpp

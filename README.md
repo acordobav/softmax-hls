@@ -32,6 +32,13 @@ Con el objetivo de reducir la latencia total y mejorar el throughput, procurando
 
 </h4> <hr style="border: 1px solid #000;"/> 
 
+### Diseño 3 : Codificación con optimizaciones HLS 2
+En este diseño se aplicaron directivas de optimización HLS, tales como: `#pragma HLS PIPELINE`, `#pragma HLS UNROLL` y `#pragma HLS ARRAY PARTITION`.
+
+Con el objetivo de reducir la latencia total y mejorar, de igual manera que en el diseño 2, el throughput. En este caso en particular, la directiva "ARRAY PARTITION" permite tomar el arreglo de datos y particionarlo, de modo que se puedan establecer paralelismo a nivel de datos.
+
+</h4> <hr style="border: 1px solid #000;"/> 
+
 ### Testbench para ambos diseños
 
 Se desarrolló un testbench simple que:
@@ -65,15 +72,19 @@ Esto realiza todo lo definido en el script.tcl:
 | Diseño       | Critical Path Delay (ns) | Max Frequency | Latency (cycles) | LUT Usage | FF Usage | DSP Usage | BRAM Usage |
 | ------------ | ------------------------ | ------------- | ---------------- | --------- | -------- | --------- | ---------- |
 | Simple       | 2.920                    | 342.47 MHz    | 1199             | 3928      | 3084     | 9         | 17         |
-| Optimizado   | 2.920                    | 342.47 MHz    | 999              | 4064      | 3093     | 7         | 17         |
+| Optimizado 1 | 2.920                    | 342.47 MHz    | 999              | 4064      | 3093     | 7         | 17         |
+| Optimizado 2 | 2.920                    | 342.47 MHz    | 924              | 4128      | 3322     | 7         | 16         |
 
 
-El diseño optimizado reduce la latencia de 1199 a 999 ciclos (diseño base), lo que significa que la operación completa de Softmax se ejecuta más rápido. Esto se debe a las directivas HLS aplicadas (PIPELINE y UNROLL), que permiten ejecutar múltiples operaciones en paralelo dentro del hardware, acelerando la ejecución sin depender de un aumento de frecuencia.
 
-Las LUTs y FFs aumentan ligeramente en el diseño optimizado, porque la paralelización requiere más lógica de control y almacenamiento intermedio. El uso de DSP disminuye, indicando que el optimizador HLS está reutilizando más eficientemente las unidades de punto flotante disponibles.
+El diseño optimizado reduce la latencia de 1199 a 999 y 924 ciclos (diseño base contra diseños optimizados 1 y 2), lo que significa que la operación completa de Softmax se ejecuta más rápido. Esto se debe a las directivas HLS aplicadas (PIPELINE y UNROLL, así como PARTITION), que permiten ejecutar múltiples operaciones en paralelo dentro del hardware, acelerando la ejecución sin depender de un aumento de frecuencia.
+
+Las LUTs y FFs aumentan ligeramente en el diseño optimizado, porque la paralelización requiere más lógica de control y almacenamiento intermedio. Esto es incluso más visible con la segunda propuesta de optimización, donde el LUT y FF Usage continua aumentando. 
+
+El uso de DSP disminuye, indicando que el optimizador HLS está reutilizando más eficientemente las unidades de punto flotante disponibles.
 Con respecto a la BRAM, esta se mantiene constante, ya que ambos diseños requieren almacenar la misma cantidad de datos (100 entradas y 100 salidas).
 
-Ambos diseños alcanzan o superan la frecuencia objetivo de 250 MHz, mostrando que la optimización no afecta la estabilidad del reloj. 
+Los diseños, en general, alcanzan o superan la frecuencia objetivo de 250 MHz, mostrando que la optimización no afecta la estabilidad del reloj. 
 
 La optimización mejora el throughput, es decir, la cantidad de operaciones completadas por segundo, sin comprometer la precisión del Softmax analizado en este proyecto.
 
@@ -94,6 +105,11 @@ Las herramientas de Inteligencia Artificial se utilizaron para hacer más robust
     ├── softmax.cpp
     ├── softmax.h
     ├── softmax_tb.cc
+└── design3/src/
+    ├── script.tcl
+    ├── softmax.cpp
+    ├── softmax.h
+    ├── softmax_tb.cc
 ```
 Donde: 
 - script.tcl: Es el script de automatización para Vitis HLS. Crea el proyecto HLS, agrega los archivos fuente y testbench, además, configura la solución para AMD Kria KV260 a 250 MHz, y ejecuta simulación y síntesis.
@@ -101,7 +117,7 @@ Donde:
 - softmax.h: Es el header del archivo softmax.cpp. Declara la función softmax y sus prototipos, incluyendo interfaces AXI y tipos de datos.
 - softmax_tb.cc: Inicializa los datos de entrada, llama a la función softmax y verifica la salida (positividad y suma ~ 1) antes de la síntesis.
 
-Ambos diseños tienen archivos con el mismo nombre para simplificación de la estructura y lograr comparar los diseños de una manera más rápida. Pero es importante aclarar que el "design1" es el diseño base y el "design2" es el diseño optimizado.
+Los diseños tienen archivos con el mismo nombre para simplificación de la estructura y lograr comparar los diseños de una manera más rápida. Pero es importante aclarar que el "design1" es el diseño base y el "design2" es el diseño optimizado.
 
 
 
