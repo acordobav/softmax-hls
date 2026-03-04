@@ -6,14 +6,14 @@
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source /mnt/maestria/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/mnt/maestria/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'root' on host '65d73f150b0a' (Linux_x86_64 version 6.17.0-14-generic) on Tue Mar 03 21:36:18 CST 2026
-INFO: [HLS 200-10] In directory '/workspace/FPGA/Repos/softmax-hls/design3/src'
+source /tools/Xilinx/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'vitis' on host '6402151112a4' (Linux_x86_64 version 6.17.0-14-generic) on Wed Mar 04 04:02:05 UTC 2026
+INFO: [HLS 200-10] In directory '/home/ws/design3/src'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
 Sourcing Tcl script 'script.tcl'
 INFO: [HLS 200-1510] Running: open_project softmax_design3 
-INFO: [HLS 200-10] Opening project '/workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3'.
+INFO: [HLS 200-10] Creating and opening project '/home/ws/design3/src/softmax_design3'.
 INFO: [HLS 200-1510] Running: set_top softmax_top 
 INFO: [HLS 200-1510] Running: add_files softmax.cpp 
 INFO: [HLS 200-10] Adding design file 'softmax.cpp' to the project
@@ -22,24 +22,17 @@ INFO: [HLS 200-10] Adding design file 'softmax.h' to the project
 INFO: [HLS 200-1510] Running: add_files -tb softmax_tb.cc 
 INFO: [HLS 200-10] Adding test bench file 'softmax_tb.cc' to the project
 INFO: [HLS 200-1510] Running: open_solution -flow_target vitis solution 
-INFO: [HLS 200-10] Opening solution '/workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution'.
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
-INFO: [HLS 200-1611] Setting target device to 'xck26-sfvc784-2LV-c'
+INFO: [HLS 200-10] Creating and opening solution '/home/ws/design3/src/softmax_design3/solution'.
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
-INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_conservative_mode=1
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_auto_max_ports=0
-INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
-INFO: [HLS 200-1464] Running solution command: config_rtl -deadlock_detection=sim
-INFO: [HLS 200-1464] Running solution command: config_dataflow -strict_mode=warning
-INFO: [HLS 200-1464] Running solution command: config_export -format=xo
-INFO: [HLS 200-1464] Running solution command: config_export -ipname=softmax_top
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
 INFO: [HLS 200-1510] Running: set_part xck26-sfvc784-2LV-c 
+INFO: [HLS 200-1611] Setting target device to 'xck26-sfvc784-2LV-c'
 INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
 INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
 INFO: [HLS 200-1510] Running: config_rtl -deadlock_detection sim 
 INFO: [HLS 200-1510] Running: config_interface -m_axi_conservative_mode=1 
@@ -155,28 +148,28 @@ out[99] = 0.0157409
 Sum = 1
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 4.42 seconds. CPU system time: 1.17 seconds. Elapsed time: 6.82 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 2.54 seconds. CPU system time: 0.31 seconds. Elapsed time: 2.85 seconds; current allocated memory: 0.047 MB.
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 327.410 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 256.992 MB.
 INFO: [HLS 200-10] Analyzing design file 'softmax.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.62 seconds. CPU system time: 1.41 seconds. Elapsed time: 17.29 seconds; current allocated memory: 333.504 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 9.04 seconds. CPU system time: 0.87 seconds. Elapsed time: 9.92 seconds; current allocated memory: 263.344 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
-INFO: [HLS 200-1995] There were 53 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 63 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 53 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 49 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 49 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 116 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 82 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 82 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 82 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 107 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 114 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /workspace/FPGA/Repos/softmax-hls/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 53 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 63 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 53 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 49 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 49 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 116 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 82 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 82 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 82 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 103 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 107 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 114 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/ws/design3/src/softmax_design3/solution/syn/report/csynth_design_size.rpt
 INFO: [HLS 214-131] Inlining function 'exp_reduce_::exp(float)' into 'hls::expf(float)' (/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/c++/expfloat.cpp:22:9)
 INFO: [HLS 214-131] Inlining function 'hls::expf(float)' into 'softmax_top' (softmax.cpp:23:18)
 WARNING: [HLS 214-386] A depth specification is required for MAXI interface port 'in' for cosimulation. (softmax.cpp:6:0)
@@ -185,14 +178,14 @@ INFO: [HLS 214-188] Unrolling loop 'VITIS_LOOP_28_2' (softmax.cpp:28:22) in func
 INFO: [HLS 214-248] Applying array_partition to 'exp_buffer': Cyclic partitioning with factor 4 on dimension 1. (softmax.cpp:16:11)
 INFO: [HLS 214-115] Multiple burst reads of length 25 and bit width 128 has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (softmax.cpp:21:19)
 INFO: [HLS 214-115] Multiple burst writes of length 25 and bit width 128 in loop 'VITIS_LOOP_28_2'(softmax.cpp:28:22) has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (softmax.cpp:28:22)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.78 seconds. CPU system time: 0.54 seconds. Elapsed time: 7.15 seconds; current allocated memory: 334.332 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 334.332 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.06 seconds. CPU system time: 0.28 seconds. Elapsed time: 6.16 seconds; current allocated memory: 264.234 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 264.234 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 334.707 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 264.742 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 335.309 MB.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.04 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.04 seconds; current allocated memory: 357.945 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 368.293 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 265.309 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 287.980 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 298.316 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'softmax_top' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -214,13 +207,13 @@ WARNING: [HLS 200-880] The II Violation in module 'softmax_top_Pipeline_VITIS_LO
 Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-880.html
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 7, Depth = 29, loop 'VITIS_LOOP_21_1'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.08 seconds; current allocated memory: 370.070 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 300.094 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 370.070 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 300.094 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'softmax_top_Pipeline_VITIS_LOOP_28_2' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -228,25 +221,25 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_28_2'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 32, loop 'VITIS_LOOP_28_2'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 370.492 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 300.512 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 370.492 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 300.512 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'softmax_top' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 371.125 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 301.109 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 371.125 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 301.109 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'softmax_top_Pipeline_VITIS_LOOP_21_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -266,7 +259,7 @@ WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_L
 INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_8_no_dsp_1': 1 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'fexp_32ns_32ns_32_18_full_dsp_1': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_top_Pipeline_VITIS_LOOP_21_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 371.824 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 301.840 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'softmax_top_Pipeline_VITIS_LOOP_28_2' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -286,7 +279,7 @@ WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_L
 WARNING: [RTGEN 206-101] Setting dangling out port 'softmax_top_Pipeline_VITIS_LOOP_28_2/m_axi_gmem_BREADY' to 0.
 INFO: [RTGEN 206-100] Generating core module 'fdiv_32ns_32ns_32_29_no_dsp_1': 4 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_top_Pipeline_VITIS_LOOP_28_2'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 374.184 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 304.207 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'softmax_top' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -298,16 +291,16 @@ INFO: [RTGEN 206-500] Setting interface mode on function 'softmax_top' to 's_axi
 INFO: [RTGEN 206-100] Bundling port 'in_r', 'out_r' and 'return' to AXI-Lite port control.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_top'.
 INFO: [RTMG 210-278] Implementing memory 'softmax_top_exp_buffer_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 378.191 MB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.19 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.23 seconds; current allocated memory: 381.879 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 308.199 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.1 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.12 seconds; current allocated memory: 311.883 MB.
 INFO: [HLS 200-1603] Design has inferred MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.52 seconds. CPU system time: 0.06 seconds. Elapsed time: 0.64 seconds; current allocated memory: 388.859 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.33 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.35 seconds; current allocated memory: 318.844 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for softmax_top.
 INFO: [VLOG 209-307] Generating Verilog RTL for softmax_top.
 INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
 INFO: [HLS 200-789] **** Estimated Fmax: 342.47 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 18.65 seconds. CPU system time: 2.15 seconds. Elapsed time: 25.99 seconds; current allocated memory: 61.551 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 10.86 seconds. CPU system time: 1.23 seconds. Elapsed time: 16.93 seconds; current allocated memory: 62.469 MB.
 INFO: [HLS 200-1510] Running: close_project 
 HLS completed successfully
-INFO: [HLS 200-112] Total CPU user time: 25.16 seconds. Total CPU system time: 4.24 seconds. Total elapsed time: 37.21 seconds; peak allocated memory: 389.012 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Tue Mar  3 21:36:55 2026...
+INFO: [HLS 200-112] Total CPU user time: 14.27 seconds. Total CPU system time: 1.72 seconds. Total elapsed time: 20.71 seconds; peak allocated memory: 318.984 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Wed Mar  4 04:02:26 2026...
