@@ -1,7 +1,7 @@
 .vscode/
 .Xil/
-design1/src/softmax_design1/
-design1/src/vitis_hls.log
+design1_simple/src/softmax_design1/
+design1_simple/src/vitis_hls.log
 
-design2/src/softmax_design2/
-design2/src/vitis_hls.log
+design3_opt/src/softmax_design2/
+design3_opt/src/vitis_hls.log

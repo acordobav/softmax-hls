@@ -1,9 +1,7 @@
 
-### Proyecto corto 1
+### Proyecto corto 2
 
 </h4> <hr style="border: 1px solid #000;"/>
-
-
 
 ### Descripción del proyecto
 En este proyecto se diseñaron dos aceleradores para la función **softmax** de 100 entradas usando Vitis HLS. El objetivo es explorar la implementación en FPGA de cálculos de punto flotante, comparando un diseño simple sin optimizaciones con uno optimizado usando directivas HLS.  
@@ -24,22 +22,29 @@ Este diseño fue implementado únicamente con los pragmas necesarios para defini
 
 Se espera que mantenga una implementación secuencial y sin paralelización explícita, utilizando el scheduler por defecto de HLS. Este enfoque puede derivar en mayor latencia en comparación con diseños optimizados, aunque minimiza la complejidad y mantiene un uso de recursos relativamente bajo.
 
+</h4> <hr style="border: 1px solid #000;"/>  Optimizaciones para determinar si se obtiene mejores resultados que el Diseño 1
 
 ### Diseño 2 : Codificación con optimizaciones HLS
 En este diseño se aplicaron directivas de optimización HLS, tales como:  `#pragma HLS PIPELINE`  y  `#pragma HLS UNROLL`
 
 Con el objetivo de reducir la latencia total y mejorar el throughput, procurando acercarse a la frecuencia objetivo de 250 MHz. Además, se analizará cuidadosamente el trade-off entre área y desempeño, evaluando cómo estas optimizaciones impactan el uso de recursos frente al rendimiento.
 
-</h4> <hr style="border: 1px solid #000;"/> 
 
-### Diseño 3 : Codificación con optimizaciones HLS 2
+### Diseño 3 : Codificación con optimizaciones HLS
 En este diseño se aplicaron directivas de optimización HLS, tales como: `#pragma HLS PIPELINE`, `#pragma HLS UNROLL` y `#pragma HLS ARRAY PARTITION`.
-
 Con el objetivo de reducir la latencia total y mejorar, de igual manera que en el diseño 2, el throughput. En este caso en particular, la directiva "ARRAY PARTITION" permite tomar el arreglo de datos y particionarlo, de modo que se puedan establecer paralelismo a nivel de datos.
 
+### Diseño 4 : Codificación con optimizaciones HLS
+En este diseño se aplicaron directivas más agresivas como `#pragma HLS PIPELINE`, `#pragma HLS UNROLL` y `#pragma HLS ARRAY_PARTITION`.
+Se busca bajar aún más la latencia ejecutando varias operaciones al mismo tiempo, pero esto también aumenta el consumo de recursos. Por eso se evalúa si el aumento en área realmente vale la pena en términos de desempeño.
+
+### Diseño 5 : Codificación con optimizaciones HLS
+En este diseño se aplicaron directivas como `#pragma HLS PIPELINE`, `#pragma HLS UNROLL`, `#pragma HLS ARRAY_PARTITION`, `#pragma HLS BIND_STORAGE` y `#pragma HLS ALLOCATION`.
+A diferencia del Diseño 4, aquí la idea no es paralelizar todo al máximo, sino encontrar un mejor balance entre latencia y recursos. Se controla la memoria y la cantidad de instancias que se usan, para evitar gastar más hardware del necesario.
+
 </h4> <hr style="border: 1px solid #000;"/> 
 
-### Testbench para ambos diseños
+### Testbench para los diseños
 
 Se desarrolló un testbench simple que:
 
@@ -64,28 +69,49 @@ Esto realiza todo lo definido en el script.tcl:
 </h4> <hr style="border: 1px solid #000;"/>
 
 
-
 ## Analisis de Resultados
 
-### Comparación de los diseños Softmax
+### Evaluación adicional (otras propuestas de optimización)
 
-| Diseño       | Critical Path Delay (ns) | Max Frequency | Latency (cycles) | LUT Usage | FF Usage | DSP Usage | BRAM Usage |
-| ------------ | ------------------------ | ------------- | ---------------- | --------- | -------- | --------- | ---------- |
-| Simple       | 2.920                    | 342.47 MHz    | 1199             | 3928      | 3084     | 9         | 17         |
-| Optimizado   | 2.920                    | 342.47 MHz    | 924              | 4128      | 3322     | 7         | 16         |
+Además del diseño base y la propuesta optimizada seleccionada, se implementaron variantes adicionales con el objetivo de analizar hasta qué punto era posible mejorar el desempeño mediante mayor paralelización o un control más explícito de recursos usando pragmas HLS.
 
+El propósito de esta exploración fue identificar el punto donde el incremento de paralelismo deja de generar beneficios significativos en latencia y comienza a impactar el área.
 
 
-El diseño optimizado reduce la latencia de 1199 a 924 ciclos, lo que significa que la operación completa de Softmax se ejecuta más rápido. Esto se debe a las directivas HLS aplicadas (PIPELINE y UNROLL, así como PARTITION), que permiten ejecutar múltiples operaciones en paralelo dentro del hardware, acelerando la ejecución sin depender de un aumento de frecuencia.
+### Comparación completa de los diseños Softmax
 
-Las LUTs y FFs aumentan ligeramente en el diseño optimizado, porque la paralelización requiere más lógica de control y almacenamiento intermedio. Esto es incluso más visible con la segunda propuesta de optimización, donde el LUT y FF Usage continua aumentando. 
+| Diseño Softmax          | Critical Path Delay (ns) | Max Frequency | Latency (cycles) | LUT Usage | FF Usage | DSP Usage | BRAM Usage |
+| ----------------------- | ------------------------ | ------------- | ---------------- | --------- | -------- | --------- | ---------- |
+| Diseño 1 (simple)       | 2.920                    | 342.47 MHz    | 1199             | 3928      | 3084     | 9         | 17         |
+| Diseño 2 (optimizado)   | 2.920                    | 342.47 MHz    | 999              | 4064      | 3093     | 7         | 17         |
+| Diseño 3 (optimizado)   | 2.920                    | 342.47 MHz    | 924              | 4128      | 3322     | 7         | 16         |
+| Diseño 4 (optimizado)   | 2.920                    | 342.47 MHz    | 925              | 7004      | 6201     | 19        | 32         |
+| Diseño 5 (optimizado)   | 2.920                    | 342.47 MHz    | 924              | 4227      | 3353     | 7         | 24         |
 
-El uso de DSP disminuye, indicando que el optimizador HLS está reutilizando más eficientemente las unidades de punto flotante disponibles.
-Con respecto a la BRAM, esta se mantiene constante, ya que ambos diseños requieren almacenar la misma cantidad de datos (100 entradas y 100 salidas).
+La aplicación progresiva de directivas HLS permitió reducir la latencia desde 1199 ciclos en el diseño base hasta 924 ciclos en los diseños más optimizados. Esta mejora se logra principalmente mediante PIPELINE, UNROLL y ARRAY_PARTITION, que incrementan el paralelismo interno del acelerador sin necesidad de aumentar la frecuencia de operación.
 
-Los diseños, en general, alcanzan o superan la frecuencia objetivo de 250 MHz, mostrando que la optimización no afecta la estabilidad del reloj. 
+El Diseño 2 fue la primera optimización aplicada. Aquí la latencia baja de 1199 a 999 ciclos con un aumento muy leve en LUTs y FFs, e incluso con una ligera reducción en DSPs. Esto demuestra que aplicar pipeline y unroll ya genera una mejora importante sin impactar significativamente el área. Es decir, es una optimización eficiente y de bajo costo en recursos.
 
-La optimización mejora el throughput, es decir, la cantidad de operaciones completadas por segundo, sin comprometer la precisión del Softmax analizado en este proyecto.
+Es importante notar que el critical path delay y la frecuencia máxima se mantienen iguales en todos los diseños. Esto significa que las mejoras no vienen propiamente del reloj, sino de organizar mejor el hardware internamente y aprovechar más el paralelismo.
+
+El Diseño 3 logra reducir la latencia hasta 924 ciclos con un incremento moderado de recursos, convirtiéndose en el mejor punto de equilibrio entre desempeño y área.
+
+Por otro lado, el Diseño 4 muestra un caso claro de sobre–paralelización: aunque la latencia es similar (925 ciclos), el consumo de LUTs, FFs, DSPs y BRAM aumenta considerablemente sin una mejora real en desempeño.
+
+El Diseño 5 también alcanza los 924 ciclos, pero presenta un mayor uso de BRAM. Sin embargo, ese incremento en memoria no genera una mejora adicional en latencia, por lo que no resulta más conveniente que el Diseño 3.
+
+Por lo tanto, el Diseño 3 se selecciona como la propuesta optimizada final, ya que logra la menor latencia con un crecimiento controlado de recursos. En este punto, agregar más paralelismo ya no genera mejoras significativas y solo incrementa el área.
+
+Lo cual genera la tabla definitiva comparando el diseño base Softmax y su optimización mediante pragmas HLS mostrada a continuación: 
+
+### Comparación final de los diseños seleccionados Softmax 
+
+| Diseño Softmax          | Critical Path Delay (ns) | Max Frequency | Latency (cycles) | LUT Usage | FF Usage | DSP Usage | BRAM Usage |
+| ----------------------- | ------------------------ | ------------- | ---------------- | --------- | -------- | --------- | ---------- |
+| Diseño 1 (simple)       | 2.920                    | 342.47 MHz    | 1199             | 3928      | 3084     | 9         | 17         |
+| Diseño 3 (optimizado)   | 2.920                    | 342.47 MHz    | 924              | 4128      | 3322     | 7         | 16         |
+
+En general, se evidencia que el uso adecuado de pragmas HLS mejora el throughput del acelerador sin afectar la frecuencia objetivo de 250 MHz, y que existe un punto óptimo donde el balance entre paralelismo y recursos es el más conveniente.
 
 ## Inteligencia Artificial
 Las herramientas de Inteligencia Artificial se utilizaron para hacer más robustos los bancos de prueba, así como para apoyar la comprensión de conceptos y profundizar en detalles de los pragmas aplicados en el diseño optimizado. 
@@ -94,17 +120,16 @@ Las herramientas de Inteligencia Artificial se utilizaron para hacer más robust
 
 ```
 ├── README.md
-└── design1/src/
+└── design1_simple/src/
     ├── script.tcl
     ├── softmax.cpp
     ├── softmax.h
     ├── softmax_tb.cc
-└── design2/src/
+└── design3_opt/src/
     ├── script.tcl
     ├── softmax.cpp
     ├── softmax.h
     ├── softmax_tb.cc
-
 ```
 Donde: 
 - script.tcl: Es el script de automatización para Vitis HLS. Crea el proyecto HLS, agrega los archivos fuente y testbench, además, configura la solución para AMD Kria KV260 a 250 MHz, y ejecuta simulación y síntesis.
